@@ -29,7 +29,6 @@ namespace UI
         {
             // This normally would have many uses but we just have equip for now
             _inventoryManager.EquipItem(_currentItem.itemType);
-            HUDManager.Singleton.ShowToast($"{_currentItem.itemType} has been equipped");
         }
     }
 }
