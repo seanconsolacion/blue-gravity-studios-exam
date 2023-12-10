@@ -101,6 +101,7 @@ namespace Inventory
             if (itemToEquip is not Item_Wearable)
             {
                 Debug.Log("Item that wants to be equippied is not a wearable item");
+                HUDManager.Singleton.ShowToast($"Already equipped");
                 return;
             }
 
@@ -119,8 +120,8 @@ namespace Inventory
                 CurrentlyEquippedItems.Add(itemToEquip);
                 CurrentItems.Remove(itemToEquip);
                 GameManager.Singleton.CurrentPlayer.PlayerVisual.ChangeWearable(wearable.wearableSlot, wearable.clothSprite);
-
                 _inventoryUI.PopulateInventoryUI();
+                HUDManager.Singleton.ShowToast($"{itemType} has been equipped");
             }
             else
                 Debug.LogError($"Can't equip {itemType}. Please check if the player really has this item");
