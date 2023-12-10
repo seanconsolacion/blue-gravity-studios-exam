@@ -1,3 +1,4 @@
+using Inventory;
 using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Player
         private PlayerLogic _player;
         private InputAction _moveAction;
         private InputAction _interactAction;
+        private InputAction _openInventoryAction;
         private bool _isActivated;
 
         public bool IsActivated => _isActivated;
@@ -25,6 +27,7 @@ namespace Player
             {
                 _moveAction = playerInput.actions["MovePlayer"];
                 _interactAction = playerInput.actions["Interact"];
+                _openInventoryAction = playerInput.actions["OpenInventory"];
             }
             else
                 Debug.LogError("No player input component found.");
@@ -37,6 +40,7 @@ namespace Player
 
             HandleMovement();
             HandleInteraction();
+            HandleOpeningOfInventory();
         }
 
         private void HandleMovement()
@@ -48,6 +52,12 @@ namespace Player
         {
             if (_interactAction.WasPerformedThisFrame())
                 _player.Interact();
+        }
+
+        private void HandleOpeningOfInventory()
+        {
+            if (_openInventoryAction.WasPerformedThisFrame())
+                _player.OpenInventory();
         }
 
         public void ToggleActivation(bool isActivated)

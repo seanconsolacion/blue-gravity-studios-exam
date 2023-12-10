@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Head3
   m_EditorClassIdentifier: 
   itemType: 5
-  price: 0
+  price: 300
   inventoryIcon: {fileID: 21300000, guid: 20eb058aea3c3a744bb5d47a1610550a, type: 3}
   wearableSlot: 0
   clothSprite: {fileID: 21300000, guid: 20eb058aea3c3a744bb5d47a1610550a, type: 3}

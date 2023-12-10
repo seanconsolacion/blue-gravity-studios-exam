@@ -1,4 +1,5 @@
 using HUD;
+using Inventory;
 using Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -68,6 +69,11 @@ namespace Player
             _currentInteractable.Interact();
         }
 
+        public void OpenInventory()
+        {
+            InventoryManager.Singleton.OpenInventoryUI();
+        }
+
         private void CheckForInteractables()
         {
             Debug.DrawRay(transform.position, _currentDirection * 5f, Color.yellow);
@@ -75,13 +81,16 @@ namespace Player
             RaycastHit2D hit;
             if (hit = Physics2D.Raycast(transform.position, _currentDirection, 5f))
             {
-                if (hit.transform.TryGetComponent(out IInteractable interactable) && _currentInteractable != interactable)
+                if (hit.transform.TryGetComponent(out IInteractable interactable))
                     _currentInteractable = interactable;
+                else
+                    _currentInteractable = null;
             }
             else
                 _currentInteractable = null;
 
             HUDManager.Singleton.ToggleInteractPrompt(_currentInteractable != null && PlayerController.IsActivated);
+
         }
     }
 }

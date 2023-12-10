@@ -13,7 +13,8 @@ namespace HUD
         [SerializeField] private TextMeshProUGUI _toastText;
         [SerializeField] private GameObject _interactPrompt;
         [SerializeField] private GameObject _toastPanel;
-
+        [SerializeField] private Color _normalToastTextColor;
+        [SerializeField] private Color _warningToastTextColor;
         private void Awake()
         {
             Singleton = this;
@@ -40,7 +41,7 @@ namespace HUD
                 yield return new WaitForEndOfFrame();
                 _toastPanel.SetActive(true);
 
-                _toastText.color = isNegative ? Color.red : Color.black;
+                _toastText.color = isNegative ? _warningToastTextColor : _normalToastTextColor;
             }
         }
     }
