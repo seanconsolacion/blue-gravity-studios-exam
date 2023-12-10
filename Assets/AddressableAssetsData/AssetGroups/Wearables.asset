@@ -29,6 +29,42 @@ MonoBehaviour:
     m_Address: DefaultTorso
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 0b24c957b99e2c94bb5bad4fc3e68c76
+    m_Address: Head1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3e8288486f8210c46a2280b3c8fba731
+    m_Address: Head2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 58b5500fa72816a44833a2fab8a8752e
+    m_Address: Head3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c108492546cd8244db31deb301af7015
+    m_Address: Pelvis1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f01fda01458f08a4e975cf02f156dafe
+    m_Address: Pelvis2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 78a44a65798efd744bd316e96fa49833
+    m_Address: Pelvis3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9ce593980d0cb7f45af18eeb71d1a20c
+    m_Address: Torso1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 88f574604a8ee7048af05dbfce210cac
+    m_Address: Torso2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0d89a11cb0aeac746a04feb9f00a8b2c
+    m_Address: Torso3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7a687797f4e467e4eaa791ceb9e4dbdd, type: 2}
   m_SchemaSet:

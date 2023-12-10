@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7eda3468d4d9a4a97afda74916bf3e, type: 3}
   m_Name: DefaultPelvis
   m_EditorClassIdentifier: 
-  itemName: DefaultPelvis
+  itemType: 2
   price: 0
   inventoryIcon: {fileID: 21300000, guid: c376d5b80d02ffe4ba89fd03d60ec471, type: 3}
-  clothSlot: 2
+  wearableSlot: 2
   clothSprite: {fileID: 21300000, guid: c376d5b80d02ffe4ba89fd03d60ec471, type: 3}

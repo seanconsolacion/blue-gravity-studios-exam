@@ -6,16 +6,17 @@ using UnityEngine;
 
 namespace Player
 {
-    [RequireComponent(typeof(PlayerController), typeof(PlayerAnimator), typeof(Rigidbody2D))]
+    [RequireComponent(typeof(PlayerController), typeof(PlayerVisual), typeof(Rigidbody2D))]
     public class PlayerLogic : MonoBehaviour
     {
         [SerializeField] private float _movementSpeed = 5;
-        [SerializeField] private PlayerAnimator _playerAnimator;
+        [SerializeField] private PlayerVisual _playerVisual;
         private PlayerController _playerController;
         private Rigidbody2D _rigidBody;
-
         private Vector3 _currentDirection;
         private IInteractable _currentInteractable;
+
+        public PlayerVisual PlayerVisual => _playerVisual;
 
         private void Start()
         {
@@ -47,14 +48,14 @@ namespace Player
 
         public void Move(Vector3 direction)
         {
-            _rigidBody.MovePosition(transform.position + (_movementSpeed * Time.fixedDeltaTime * direction));
-            _playerAnimator.UpdateMoveAnimation(direction);
-
             if (direction.magnitude > 0)
-            {
                 _currentDirection = direction;
-                _playerAnimator.UpdatePlayerXDirection(direction.x > 0);
-            }
+
+            if (direction.x != 0)
+                _playerVisual.UpdatePlayerXDirection(_currentDirection.x > 0);
+
+            _rigidBody.MovePosition(transform.position + (_movementSpeed * Time.fixedDeltaTime * direction));
+            _playerVisual.UpdateMoveAnimation(direction);
         }
 
         public void Interact()
@@ -72,16 +73,11 @@ namespace Player
             RaycastHit2D hit;
             if (hit = Physics2D.Raycast(transform.position, _currentDirection, 5f))
             {
-                Debug.Log("Found someone!");
-
                 if (hit.transform.TryGetComponent(out IInteractable interactable) && _currentInteractable != interactable)
                     _currentInteractable = interactable;
             }
             else
-            {
                 _currentInteractable = null;
-            }
         }
-
     }
 }

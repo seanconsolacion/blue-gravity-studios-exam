@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7eda3468d4d9a4a97afda74916bf3e, type: 3}
   m_Name: DefaultHead
   m_EditorClassIdentifier: 
-  itemName: DefaultHead
+  itemType: 0
   price: 0
   inventoryIcon: {fileID: 21300000, guid: 04f6c40e52535b941b42e11550f9cb8c, type: 3}
-  clothSlot: 0
+  wearableSlot: 0
   clothSprite: {fileID: 21300000, guid: 04f6c40e52535b941b42e11550f9cb8c, type: 3}

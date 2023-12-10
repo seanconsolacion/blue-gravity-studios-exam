@@ -7,11 +7,11 @@ namespace Inventory
     [CreateAssetMenu(fileName = "New Clothe", menuName = "Create new Clothe")]
     public class Item_Wearable : Item
     {
-        public ClotheSlot clothSlot;
+        public WearableSlot wearableSlot;
         public Sprite clothSprite;
     }
 
-    public enum ClotheSlot
+    public enum WearableSlot
     {
         Head,
         Torso,
