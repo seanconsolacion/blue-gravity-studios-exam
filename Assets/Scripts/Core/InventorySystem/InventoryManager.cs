@@ -32,7 +32,6 @@ namespace Inventory
             // This should be connected to a save manager of some sort
             // Setup with default clothes for now
             StartCoroutine(AddToInventory(new ItemType[] { ItemType.DefaultHead, ItemType.DefaultTorso, ItemType.DefaultPelvis}, EquipDefaultItems));
-            StartCoroutine(AddToInventory(new ItemType[] { ItemType.Head1, ItemType.Head2, ItemType.Head3}));
         }
 
         private void EquipDefaultItems()
