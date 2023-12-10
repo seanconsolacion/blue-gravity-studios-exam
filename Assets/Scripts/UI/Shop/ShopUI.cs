@@ -30,9 +30,11 @@ namespace ShopSystem
             ClearShopButtons();
 
             for (int i = 0; i < shopItems.Length; i++)
-                Instantiate(_shopButtonPrefab, _shopButtonsParent).GetComponent<ShopButton>().Setup(_inventoryManager, shopItems[i], i, forSelling);
+                Instantiate(_shopButtonPrefab, _shopButtonsParent).GetComponent<ShopButton>().Setup(_inventoryManager, shopItems[i], forSelling);
 
-            _currentShopItems = shopItems;
+            if (!forSelling)
+                _currentShopItems = shopItems;
+
             _shopPanel.SetActive(true);
             _sellButton.interactable = !forSelling;
             _buyButton.interactable = forSelling;

@@ -3,6 +3,7 @@ using Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -15,7 +16,9 @@ namespace Inventory
         public static InventoryManager Singleton;
         [SerializeField] private PlayerLogic _player;
         [SerializeField] private InventoryUI _inventoryUI;
+        [SerializeField] private TextMeshProUGUI _coinText;
 
+        public int CurrentCoins { private set; get; }
         public List<Item> CurrentItems { private set; get; } = new();
         public List<Item> CurrentlyEquippedItems { private set; get; } = new();
 
@@ -38,6 +41,7 @@ namespace Inventory
             EquipItem(ItemType.DefaultHead);
             EquipItem(ItemType.DefaultTorso);
             EquipItem(ItemType.DefaultPelvis);
+            UpdateCoins(1000);
         }
         
         private Item GetItemFromInventory(ItemType itemType)
@@ -87,9 +91,9 @@ namespace Inventory
             onTaskFinished?.Invoke();
         }
 
-        public void RemoveFromItems(int index)
+        public void RemoveFromItems(ItemType itemType)
         {
-            CurrentItems.RemoveAt(index);
+            CurrentItems.Remove(GetItemFromInventory(itemType));
         }
 
         public void EquipItem(ItemType itemType)
@@ -135,6 +139,12 @@ namespace Inventory
         {
             _inventoryUI.gameObject.SetActive(false);
             CameraManager.Singleton.ChangeToNormalCamera();
+        }
+
+        public void UpdateCoins(int delta)
+        {
+            CurrentCoins += delta;
+            _coinText.text = CurrentCoins.ToString();
         }
     }
 }

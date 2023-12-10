@@ -17,9 +17,8 @@ namespace ShopSystem
 
         private InventoryManager _inventoryManager;
         private Item _currentItem;
-        private int _currentItemIndex;
 
-        public void Setup(InventoryManager inventoryManager, Item currentItem, int index, bool forSelling)
+        public void Setup(InventoryManager inventoryManager, Item currentItem, bool forSelling)
         {
             _inventoryManager = inventoryManager;
             _currentItem = currentItem;
@@ -28,18 +27,26 @@ namespace ShopSystem
             _priceText.text = forSelling ? (currentItem.price / 2).ToString() : currentItem.price.ToString();
             _itemNameText.text = currentItem.itemType.ToString();
             _interactButtonText.text = forSelling ? "Sell" : "Buy";
-            _currentItemIndex = index;
         }
 
         public void Interact()
         {
             if (_interactButtonText.text == "Sell")
             {
-                _inventoryManager.RemoveFromItems(_currentItemIndex);
+                _inventoryManager.RemoveFromItems(_currentItem.itemType);
+                _inventoryManager.UpdateCoins(int.Parse(_priceText.text));
                 Destroy(gameObject);
             }
             else
             {
+                var itemPrice = int.Parse(_priceText.text);
+                if (_inventoryManager.CurrentCoins < itemPrice)
+                {
+                    Debug.Log("Not enough money");
+                    return;
+                }
+
+                _inventoryManager.UpdateCoins(-itemPrice);
                 StartCoroutine(_inventoryManager.AddToInventory(_currentItem.itemType));
             }
         }
