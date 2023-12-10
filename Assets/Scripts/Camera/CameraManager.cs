@@ -27,5 +27,11 @@ namespace Camera
             _normalCamera.Priority = 1;
             _closeupCamera.Priority = 0;
         }
+
+        public void SetCameraFollow(Transform toFollow)
+        {
+            _normalCamera.Follow = toFollow;
+            _closeupCamera.Follow = toFollow;
+        }
     }
 }

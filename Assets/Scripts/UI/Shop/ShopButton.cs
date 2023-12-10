@@ -1,3 +1,4 @@
+using HUD;
 using Inventory;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace ShopSystem
             {
                 _inventoryManager.RemoveFromItems(_currentItem.itemType);
                 _inventoryManager.UpdateCoins(int.Parse(_priceText.text));
+                HUDManager.Singleton.ShowToast($"{_currentItem.itemType} has been sold");
                 Destroy(gameObject);
             }
             else
@@ -43,11 +45,13 @@ namespace ShopSystem
                 if (_inventoryManager.CurrentCoins < itemPrice)
                 {
                     Debug.Log("Not enough money");
+                    HUDManager.Singleton.ShowToast("Not enough money", true);
                     return;
                 }
 
                 _inventoryManager.UpdateCoins(-itemPrice);
                 StartCoroutine(_inventoryManager.AddToInventory(_currentItem.itemType));
+                HUDManager.Singleton.ShowToast($"Successfully bought {_currentItem.itemType}");
             }
         }
     }

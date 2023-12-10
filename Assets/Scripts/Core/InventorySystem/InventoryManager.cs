@@ -1,4 +1,5 @@
 using Camera;
+using HUD;
 using Player;
 using System;
 using System.Collections;
@@ -14,9 +15,7 @@ namespace Inventory
     public class InventoryManager : MonoBehaviour
     {
         public static InventoryManager Singleton;
-        [SerializeField] private PlayerLogic _player;
         [SerializeField] private InventoryUI _inventoryUI;
-        [SerializeField] private TextMeshProUGUI _coinText;
 
         public int CurrentCoins { private set; get; }
         public List<Item> CurrentItems { private set; get; } = new();
@@ -120,7 +119,7 @@ namespace Inventory
 
                 CurrentlyEquippedItems.Add(itemToEquip);
                 CurrentItems.Remove(itemToEquip);
-                _player.PlayerVisual.ChangeWearable(wearable.wearableSlot, wearable.clothSprite);
+                GameManager.Singleton.CurrentPlayer.PlayerVisual.ChangeWearable(wearable.wearableSlot, wearable.clothSprite);
 
                 _inventoryUI.PopulateInventoryUI();
             }
@@ -133,18 +132,20 @@ namespace Inventory
             _inventoryUI.gameObject.SetActive(true);
             _inventoryUI.PopulateInventoryUI();
             CameraManager.Singleton.ChangeToCloseupCamera();
+            GameManager.Singleton.CurrentPlayer.PlayerController.ToggleActivation(false);
         }
 
         public void CloseInventoryUI()
         {
             _inventoryUI.gameObject.SetActive(false);
             CameraManager.Singleton.ChangeToNormalCamera();
+            GameManager.Singleton.CurrentPlayer.PlayerController.ToggleActivation(true);
         }
 
         public void UpdateCoins(int delta)
         {
             CurrentCoins += delta;
-            _coinText.text = CurrentCoins.ToString();
+            HUDManager.Singleton.UpdateCoinHUD(CurrentCoins);
         }
     }
 }

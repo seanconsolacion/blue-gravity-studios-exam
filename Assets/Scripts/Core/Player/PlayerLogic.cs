@@ -1,3 +1,4 @@
+using HUD;
 using Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Player
         private IInteractable _currentInteractable;
 
         public PlayerVisual PlayerVisual => _playerVisual;
+        public PlayerController PlayerController => _playerController;
 
         private void Start()
         {
@@ -78,6 +80,8 @@ namespace Player
             }
             else
                 _currentInteractable = null;
+
+            HUDManager.Singleton.ToggleInteractPrompt(_currentInteractable != null && PlayerController.IsActivated);
         }
     }
 }

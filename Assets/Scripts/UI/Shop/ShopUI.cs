@@ -57,5 +57,11 @@ namespace ShopSystem
         {
             ShowShop(_currentShopItems);
         }
+
+        public void CloseShopUI()
+        {
+            _shopPanel.SetActive(false);
+            GameManager.Singleton.CurrentPlayer.PlayerController.ToggleActivation(true);
+        }
     }
 }

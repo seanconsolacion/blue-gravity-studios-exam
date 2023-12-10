@@ -1,15 +1,20 @@
 using Inventory;
+using Player;
 using ShopSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shopkeeper : MonoBehaviour, IInteractable
+namespace ShopSystem
 {
-    [SerializeField] private Item[] _shopItems;
-
-    public void Interact()
+    public class Shopkeeper : MonoBehaviour, IInteractable
     {
-        ShopUI.Singleton.ShowShop(_shopItems);
+        [SerializeField] private Item[] _shopItems;
+
+        public void Interact()
+        {
+            ShopUI.Singleton.ShowShop(_shopItems);
+            GameManager.Singleton.CurrentPlayer.PlayerController.ToggleActivation(false);
+        }
     }
 }
